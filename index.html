@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💗 Love Story 💗</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+color:white;
+background:linear-gradient(-45deg,#ff4d6d,#ff99ac,#ff758f,#ffb3c1);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+overflow-x:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.container{
+padding:20px;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:10px;
+font-size:18px;
+}
+
+button{
+margin-top:10px;
+padding:12px 20px;
+border:none;
+border-radius:12px;
+font-size:18px;
+background:red;
+color:white;
+cursor:pointer;
+}
+
+.box{
+background:rgba(0,0,0,0.25);
+padding:12px;
+margin:10px;
+border-radius:15px;
+width:90%;
+font-size:20px;
+}
+
+/* ===== LETTER ===== */
+
+.letter{
+background:white;
+color:#ff4d6d;
+padding:25px;
+border-radius:20px;
+width:92%;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+text-align:left;
+line-height:1.8;
+font-size:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+/* ===== FLOATING HEARTS ===== */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+color:pink;
+animation:floatUp 6s linear infinite;
+pointer-events:none;
+z-index:999;
+}
+
+@keyframes floatUp{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+/* ===== BUTTON ===== */
+
+.nextBtn{
+display:inline-block;
+padding:16px 30px;
+border:2px solid white;
+border-radius:25px;
+background:rgba(255,255,255,0.15);
+box-shadow:0 0 20px rgba(255,255,255,0.7);
+cursor:pointer;
+transition:0.3s;
+margin-top:25px;
+font-size:22px;
+font-weight:bold;
+}
+
+.nextBtn:hover{
+transform:scale(1.06);
+background:rgba(255,255,255,0.25);
+}
+
+/* ===== PHOTO ===== */
+
+.photoBox{
+padding:8px;
+border:4px solid white;
+border-radius:25px;
+background:pink;
+box-shadow:0 0 25px rgba(255,255,255,0.7);
+}
+
+.photoBox img{
+width:320px;
+max-width:90vw;
+border-radius:18px;
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== PAGE 1 ===== -->
+
+<div id="p1" class="page active">
+
+<div class="container">
+
+<h1>🎀 Enter Password 🎀</h1>
+
+<input type="password" id="pass">
+
+<button onclick="login()">Open 💗</button>
+
+</div>
+
+</div>
+
+<!-- ===== PAGE 2 ===== -->
+
+<div id="p2" class="page">
+
+<div class="container">
+
+<h1>💗🎀 Our Time 🎀💗</h1>
+
+<div class="box">
+From 28/6/2024:
+<div id="t1"></div>
+</div>
+
+<div class="box">
+From 7/7/2024:
+<div id="t2"></div>
+</div>
+
+<h2 class="nextBtn" onclick="goNext()"> CLICK HERE 🫣🎁 </h2>
+
+</div>
+
+</div>
+
+<!-- ===== PAGE 3 ===== -->
+
+<div id="p3" class="page">
+
+<div class="container">
+
+<h2 style="font-size:38px;">💍 لسه مكملين</h2>
+
+<div class="letter" id="letter"></div>
+
+<h2 style="margin-top:25px;">💗💗 بحبك اوييي 💗💗</h2>
+
+<h2 class="nextBtn" onclick="show(4)">
+تحبي تشوفي القمر ؟ 😍💗
+</h2>
+
+</div>
+
+</div>
+
+<!-- ===== PAGE 4 ===== -->
+
+<div id="p4" class="page">
+
+<div class="container">
+
+<h1 style="font-size:42px;">🌷 قمري 🌷</h1>
+
+<div class="photoBox">
+
+<img src="qamar.jpg">
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// ===== LOGIN =====
+
+function login(){
+
+if(document.getElementById("pass").value==="28/6"){
+
+show(2);
+
+startTimer();
+
+}else{
+
+alert("Wrong 😢");
+
+}
+
+}
+
+// ===== PAGE SWITCH =====
+
+function show(n){
+
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+
+document.getElementById("p"+n).classList.add("active");
+
+if(n===4){
+hearts();
+}
+
+}
+
+// ===== TIMER =====
+
+function startTimer(){
+
+setInterval(()=>{
+
+let d1=new Date("2024-06-28");
+
+let d2=new Date("2024-07-07");
+
+let now=new Date();
+
+function format(ms){
+
+let s=Math.floor(ms/1000)%60;
+
+let m=Math.floor(ms/1000/60)%60;
+
+let h=Math.floor(ms/1000/60/60)%24;
+
+let d=Math.floor(ms/1000/60/60/24);
+
+return `${d} days ${h}h ${m}m ${s}s`;
+
+}
+
+document.getElementById("t1").innerText=format(now-d1);
+
+document.getElementById("t2").innerText=format(now-d2);
+
+},1000);
+
+}
+
+// ===== NEXT PAGE =====
+
+function goNext(){
+
+show(3);
+
+typeWriter();
+
+hearts();
+
+}
+
+// ===== TYPEWRITER =====
+
+function typeWriter(){
+
+let text = `مش عارف ابدا منين ولا منين بس النهارده يوم مميز النهاردههههه 😍😍
+
+28/6/2026 يعني خلاص بقالنا سنتيننن عارفه يعني ايه سنتين مش عارف اقول ايه بس يارب عقبال سنين كتير سوا و ونحقق كل الي نفسنا فيه يارب و تبق بتاعتي بقي 😔🤲🏻💗💗
+
+انا قررت اعمل حاجه مختلفه المره دي و يارب تفاجأك يا قلبي و يارب نفضل سوا طول العمر بحبك اوي اوي وربنا ميحرمنيش منك ابدا بجد يارب و يجي اليوم الي اجي اخطبك و اخدك من وسطهم كدا 😂🤲🏻
+
+مش متخيل ان بقالنا سنتين مع بعض عديناهم بكل المشاكل و كل حاجه وحشه و اتفرقنا و اتجمعنا تاني و برضو ملناش غير بعض و يارب نكون كدا دايما عقبال كام سنه كمان بس و نبق سوا 🤲🏻💗💗
+
+مش عارف اقول ايه تاني بس بجد انا مبسوط فشخ و ربنا ميحرمنيش منك ابدا يارب بحبك اوي يا مزتي 😍💍💗💗💗`;
+
+let i=0;
+
+let box=document.getElementById("letter");
+
+box.innerHTML="";
+
+function typing(){
+
+if(i<text.length){
+
+box.innerHTML += text[i];
+
+i++;
+
+setTimeout(typing,35);
+
+}
+
+}
+
+typing();
+
+}
+
+// ===== HEARTS =====
+
+function hearts(){
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="💗";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(Math.random()*20+10)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),6000);
+
+},250);
+
+}
+
+</script>
+
+</body>
+  </html>
